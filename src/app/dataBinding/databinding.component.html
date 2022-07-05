@@ -1,0 +1,23 @@
+<div>
+    <h3>Data binding</h3>
+    <!-- interpollation  -->
+    <h4>name: {{name}}</h4>
+    <h4>count:{{count}}</h4>
+</div>
+<div>
+    <!-- property binding -->
+    <input placeholder="ctrlstring" type="number" [value]="count" />
+</div>
+<br>
+<!-- event binding -->
+<div>
+    <button (click)="inc($event)">
+        increment
+    </button>
+</div>
+<br>
+<!-- two way binding -->
+<div>
+    <input placeholder="name"
+    [(ngModel)]="name"/>
+</div>
