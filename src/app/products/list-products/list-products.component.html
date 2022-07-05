@@ -1,1 +1,21 @@
-<p>list-products works!</p>
+<h3> List Of Products</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Product_id</th>
+            <th>Name</th>
+            <th>price</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <!-- ngfor is a directives ,, commonmodule is imported in product module -->
+    <tbody>
+        <tr *ngFor="let product of data">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+
+        </tr>
+    </tbody>
+</table>

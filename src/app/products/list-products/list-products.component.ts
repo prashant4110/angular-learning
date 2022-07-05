@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { product } from 'src/app/model/product';
 
 @Component({
   selector: 'app-list-products',
@@ -6,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent implements OnInit {
-
-  constructor() { }
+  // comment thease line and make private the connstructor item will same thing.
+  // private httpClient: HttpClient;
+  public data: Array<product>;
+  constructor(private httpClient: HttpClient) {
+    // this.httpClient=httpClient;
+    this.data= new Array<product>();
+    const url="http://localhost:9000/products";
+    this.httpClient.get<Array<product>>(url)
+                  .subscribe((data) => {
+                    console.log("data",data);
+                    this.data=data;
+                    
+                  })
+   }
 
   ngOnInit(): void {
 
