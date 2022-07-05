@@ -9,17 +9,23 @@
 <div>
     Show/Hide Content : <input type="checkbox" [(ngModel)]="isvisible" />
 </div>
-
+<!-- declare variable in template templates -->
+<!-- element is template variable -->
+<!-- to hide and show no need to declare variable in component -->
 <div>
+    show hide ngModel content: <input type="checkbox" #element checked [ngModel]/>{{element.checked}}
+</div>
+<div [hidden]="!element.checked">
     <!-- property binding -->
     <input placeholder="ctrlstring" type="number" [value]="count" />
-</div>
-<br>
-<!-- event binding -->
-<div>
+
+    <br>
+    <!-- event binding -->
+    <div>
     <button (click)="inc($event)">
         increment
     </button>
+    </div>
 </div>
 <br>
 <!-- two way binding -->
@@ -36,7 +42,7 @@
     (input)="count=$any($event).target.value" />
 </div>
 <br>
-<!-- two way binding with update on option as change or blur -->
+<!-- two way binding with update on option as change or blur or submit -->
 <div>
     <input placeholder="name"
     [(ngModel)]="name" [ngModelOptions]="{updateOn: 'blur'}"/>
