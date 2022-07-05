@@ -1,21 +1,30 @@
 <h3> List Of Products</h3>
+<div>
+    <input placeholder="search"[(ngModel)]="searchKey"/>
+</div>
+<br>
+<p [hidden]="!searchKey">Search Reasult for...{{searchKey}}</p>
+<p *ngIf="searchKey">result removed from the dom too when condition false</p>
 <table>
     <thead>
         <tr>
+            <th>Index</th>
             <th>Product_id</th>
             <th>Name</th>
             <th>price</th>
             <th>Description</th>
         </tr>
     </thead>
-    <!-- ngfor is a directives ,, commonmodule is imported in product module -->
+    <!-- ngfor is a structural directives ,, commonmodule is imported in product module -->
+    <!-- filtering comes under pipes -->
     <tbody>
-        <tr *ngFor="let product of data">
+        <!-- here ng class is attribute directives -->
+        <tr *ngFor="let product of data | filter : searchKey;index as i;even as even; odd as odd"[ngClass]="{oddCls:odd,evenCls:even}">
+            <td>{{i}}</td>
             <td>{{product.id}}</td>
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
+            <td>{{product.name | uppercase}}</td>
+            <td>{{product.price | currency : 'Rs.'}}</td>
             <td>{{product.description}}</td>
 
         </tr>
     </tbody>
-</table>
