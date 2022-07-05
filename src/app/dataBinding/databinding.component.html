@@ -1,9 +1,15 @@
-<div>
+<!-- property binding for hidden value -->
+<div [hidden] ="!isvisible">
     <h3>Data binding</h3>
     <!-- interpollation  -->
     <h4>name: {{name}}</h4>
     <h4>count:{{count}}</h4>
 </div>
+<!-- ng model for 2way binding with checkbox -->
+<div>
+    Show/Hide Content : <input type="checkbox" [(ngModel)]="isvisible" />
+</div>
+
 <div>
     <!-- property binding -->
     <input placeholder="ctrlstring" type="number" [value]="count" />
@@ -20,4 +26,22 @@
 <div>
     <input placeholder="name"
     [(ngModel)]="name"/>
+</div>
+<br>
+<!-- 2way binding without using ngModel -->
+<div>
+    <input type="number"
+    placeholder="count"
+    [value]="count"
+    (input)="count=$any($event).target.value" />
+</div>
+<br>
+<!-- two way binding with update on option as change or blur -->
+<div>
+    <input placeholder="name"
+    [(ngModel)]="name" [ngModelOptions]="{updateOn: 'blur'}"/>
+</div>
+
+<div>
+    Show/Hide Content : <input type="checkbox"/>
 </div>
