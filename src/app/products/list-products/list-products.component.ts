@@ -11,7 +11,8 @@ export class ListProductsComponent implements OnInit {
   // comment thease line and make private the connstructor item will same thing.
   // private httpClient: HttpClient;
   public data: Array<Product>;
-  public searchKey:string
+  public searchKey:string;
+  public nproduct: Product=new Product();
   constructor(private httpClient: HttpClient) {
     // this.httpClient=httpClient;
     this,this.searchKey="";
@@ -31,6 +32,10 @@ export class ListProductsComponent implements OnInit {
   // import the component in app module.ts declaration
   // run this code in administrator cmd prompt.
   // --dry-run at the end of ng generate shows what it should generate.
+  }
+  saveProduct(){
+    this.data.push(this.nproduct);
+    this.nproduct=new Product();
   }
 
 }
