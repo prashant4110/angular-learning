@@ -1,6 +1,7 @@
 <div>
     <h4>Edit product of ID:{{product.id}} </h4>
     <!-- form group -->
+    <!-- #productFormGroup is a template variable. we declare a variable for a div or anything by using #name -->
     <form #productFormGroup="ngForm">
     <fieldset>
         <div>
@@ -8,7 +9,10 @@
             <div>
                 <!-- form control -->
                 <!-- input has a name and ngModel -->
-                <input type="text" placeholder="Name" [(ngModel)]="temp.name" name="pname" required pattern="[A-Za-z0-9]{3,}" />
+                <input type="text" placeholder="Name" [(ngModel)]="temp.name" name="pname" required pattern="[A-Za-z0-9_]{1,}[]{0,}){0,}"  #nameCtrl="ngModel"/>
+            </div>
+            <div * ngIf="nameCtrl.invalid" [ngStyle]="{color : 'red'} ">
+                        field is required
             </div>
         </div>
         <div>
@@ -16,8 +20,10 @@
             <div>
                 <!-- form control -->
                 <!-- adding some validator as required  -->
-                <input type="number"placeholder="price" [(ngModel)]="temp.price" name="pprice" required="" min=" 100">
-            </div>
+                <input type="number"placeholder="price" [(ngModel)]="temp.price" name="pprice" required="" min=" 100" #priceCtrl="ngModel">
+            </div   >
+            <div *ngIf="priceCtrl.hasError('required')"[ngStyle]="{color : 'red'} ">field is required</div>
+            <div *ngIf="priceCtrl.hasError('min')"[ngStyle]="{color : 'red'} ">min value is required</div>
         </div>
         <div>
             <label>Description</label>
