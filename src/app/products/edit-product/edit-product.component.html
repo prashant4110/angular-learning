@@ -1,0 +1,31 @@
+<div>
+    <h4>Edit product of ID:{{product.id}} </h4>
+    <fieldset>
+        <div>
+            <label>Name</label>
+            <div>
+                <input type="text" placeholder="Name" [(ngModel)]="temp.name" />
+            </div>
+        </div>
+        <div>
+            <label>Price</label>
+            <div>
+                <input type="number"placeholder="price" [(ngModel)]="temp.price">
+            </div>
+        </div>
+        <div>
+            <label>Description</label>
+            <div>
+                <input type="text"placeholder="description" [(ngModel)]="temp.description">
+            </div>
+        </div>
+        <div>
+            <button (click)="save()">
+                save
+            </button>
+            <button (click)="cancel()">
+                cancel
+            </button>
+        </div>
+    </fieldset>
+</div>

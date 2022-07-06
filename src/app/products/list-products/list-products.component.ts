@@ -13,6 +13,8 @@ export class ListProductsComponent implements OnInit {
   public data: Array<Product>;
   public searchKey:string;
   public nproduct: Product=new Product();
+  // specified the data type may be product or null.
+  public selectedProduct : Product | null = null;
   constructor(private httpClient: HttpClient) {
     // this.httpClient=httpClient;
     this,this.searchKey="";
@@ -36,6 +38,21 @@ export class ListProductsComponent implements OnInit {
   saveProduct(){
     this.data.push(this.nproduct);
     this.nproduct=new Product();
+  }
+  editProduct(product:Product){
+    this.selectedProduct= product;
+  }
+
+  editCancelled(msg:string){
+    alert("edit cancel: "+msg);
+    this.selectedProduct=null;
+  }
+  editUpdate(updateProduct: Product){
+    const index=this.data.findIndex(item => item.id===updateProduct.id);
+    if(index!==-1){
+      this.data[index]=updateProduct;
+      this.selectedProduct=null;
+    }
   }
 
 }

@@ -27,7 +27,7 @@
             <td>{{product.price | currency : 'Rs.'}}</td>
             <td>{{product.description}}</td>
             <td>
-                <button>Edit</button>
+                <button (click)="editProduct(product)">Edit</button>
                 <button>Delete</button>
             </td>
 
@@ -54,3 +54,6 @@
 <div>
     new product {{nproduct |json}}
 </div>
+<app-edit-product *ngIf="selectedProduct" [product]="selectedProduct" (cancelled)="editCancelled($event)"
+></app-edit-product>
+<!-- (saved)="editUpdate($event)" -->
