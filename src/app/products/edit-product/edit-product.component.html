@@ -1,26 +1,33 @@
 <div>
     <h4>Edit product of ID:{{product.id}} </h4>
+    <!-- form group -->
+    <form #productFormGroup="ngForm">
     <fieldset>
         <div>
             <label>Name</label>
             <div>
-                <input type="text" placeholder="Name" [(ngModel)]="temp.name" />
+                <!-- form control -->
+                <!-- input has a name and ngModel -->
+                <input type="text" placeholder="Name" [(ngModel)]="temp.name" name="pname" required pattern="[A-Za-z0-9]{3,}" />
             </div>
         </div>
         <div>
             <label>Price</label>
             <div>
-                <input type="number"placeholder="price" [(ngModel)]="temp.price">
+                <!-- form control -->
+                <!-- adding some validator as required  -->
+                <input type="number"placeholder="price" [(ngModel)]="temp.price" name="pprice" required="" min=" 100">
             </div>
         </div>
         <div>
             <label>Description</label>
             <div>
-                <input type="text"placeholder="description" [(ngModel)]="temp.description">
+                <!-- form control -->
+                <input type="text"placeholder="description" [(ngModel)]="temp.description" name="pdescription">
             </div>
         </div>
         <div>
-            <button (click)="save()">
+            <button (click)="save() "[disabled] ="productFormGroup.pristine || productFormGroup.invalid" >
                 save
             </button>
             <button (click)="cancel()">
@@ -28,4 +35,5 @@
             </button>
         </div>
     </fieldset>
+</form>
 </div>

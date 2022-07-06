@@ -54,6 +54,7 @@
 <div>
     new product {{nproduct |json}}
 </div>
-<app-edit-product *ngIf="selectedProduct" [product]="selectedProduct" (cancelled)="editCancelled($event)"
+<app-edit-product *ngIf="selectedProduct"
+ [product]="selectedProduct" (cancelled)="editCancelled($event)"
+  (saved)="editUpdated($event)"
 ></app-edit-product>
-<!-- (saved)="editUpdate($event)" -->

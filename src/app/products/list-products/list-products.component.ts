@@ -47,10 +47,10 @@ export class ListProductsComponent implements OnInit {
     alert("edit cancel: "+msg);
     this.selectedProduct=null;
   }
-  editUpdate(updateProduct: Product){
-    const index=this.data.findIndex(item => item.id===updateProduct.id);
+  editUpdated(updatedProduct: Product){
+    const index=this.data.findIndex(item => item.id===updatedProduct.id);
     if(index!==-1){
-      this.data[index]=updateProduct;
+      this.data[index]=updatedProduct;
       this.selectedProduct=null;
     }
   }

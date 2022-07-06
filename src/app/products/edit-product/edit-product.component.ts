@@ -9,12 +9,11 @@ import { Product } from '../../model/product';
 export class EditProductComponent implements OnInit ,OnChanges{
   @Input()
   public product: Product=new Product();
-
   public temp: Product=new Product();
   @Output()
   public cancelled: EventEmitter<string>=new EventEmitter<string>();
   @Output()
-  public saved: EventEmitter<string>=new EventEmitter<string>();
+  public saved: EventEmitter<Product>=new EventEmitter<Product>();
 
   constructor() {
     // deep copying from product to temp,, shallow copy that is this. temp=this.product refering the same location.
@@ -31,12 +30,12 @@ export class EditProductComponent implements OnInit ,OnChanges{
   }
   ngOnChanges(changes: SimpleChanges): void {
     console.log("[EditProductComponent ngOnChanges]", changes);
-    Object.assign(this.temp , this.product)
+    Object.assign(this.temp , this.product);
   }
 
   save(){
     // Object.assign(this.product,this.temp)
-    this.saved.emit("data saved successfully")
+    this.saved.emit(this.temp)
   }
   cancel(){
 this.cancelled.emit("edit was cancelled");
