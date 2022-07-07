@@ -4,6 +4,14 @@
 <div class="form-group" [formGroup]="searchFormGroup">
     <input class="form-control" type="search" placeholder="search on wikipedia" formControlName="searchCtrl">
 </div>
-<div>
+<!-- <div> -->
     <!-- display result -->
+    <!-- <div *ngFor="let item of data">
+            <p>{{item}}</p>
+    </div>
+</div> -->
+<div>
+<div *ngFor=" let item of result$ |async">
+        <p>{{item}}</p>
+</div>
 </div>

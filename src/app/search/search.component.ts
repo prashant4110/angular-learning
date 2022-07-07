@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
+import { interval, Observable, Subject } from 'rxjs';
 import { take,tap,map,filter,debounceTime } from 'rxjs/operators';
 import { FormControl,Validators,FormGroup } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -11,6 +11,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class SearchComponent implements OnInit {
 
   public searchFormGroup:FormGroup;
+  public data : Array<string>=new Array<string>();
+  public result$: Observable<Array<string>>=new Observable<Array<string>>();
 
   constructor(private httpClient:HttpClient) {
     // interval(1000)
@@ -21,6 +23,20 @@ export class SearchComponent implements OnInit {
     // )
     //   .subscribe(result => console.log("in subscribe",result)
     //   );
+
+    const subject = new Subject<Number>();
+    let num =0;
+    
+    const handle=setInterval(()=>{
+      subject.next(num++);
+      if(num==5){
+        subject.subscribe(r=> console.log("subscriber2",r))
+      }
+      if(num ===15){
+        clearInterval(handle);
+      }
+    },500);
+    subject.subscribe(r=> console.log("subscriber1",r))
 
     this.searchFormGroup=new FormGroup({
       searchCtrl: new FormControl("",[Validators.required,Validators.minLength(3)],[])
@@ -51,9 +67,15 @@ export class SearchComponent implements OnInit {
                   )
                   .subscribe((data)=>{
                     console.log(data);
-                    
+                    this.data=data;
                   });
               
+
+                  this.result$=this.httpClient
+                          .get<Array<string>>(url,{params})
+                          .pipe(
+                            map((data:any) => data[1])
+                          );
             });
   }
 
