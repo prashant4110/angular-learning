@@ -15,22 +15,22 @@
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Angular</a>
+      <a class="navbar-brand" href="http://google.com">Angular</a>
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Home</a>
+          <a class="nav-link active" routerLink="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Data Binding</a>
+          <a class="nav-link" routerLink="/binding">Data Binding</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" routerLink="/products">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gadget</a>
+          <a class="nav-link" routerLink="/gadgets">Gadget</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" routerLink="#">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled">Search</a>
@@ -38,4 +38,8 @@
       </ul>
     </div>
     </nav>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
 </div>
