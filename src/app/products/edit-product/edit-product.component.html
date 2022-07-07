@@ -1,0 +1,45 @@
+<div>
+    <h4>Edit product of ID:{{product.id}} </h4>
+    <!-- form group -->
+    <!-- #productFormGroup is a template variable. we declare a variable for a div or anything by using #name -->
+    <form #productFormGroup="ngForm">
+    <fieldset>
+        <div>
+            <label>Name</label>
+            <div>
+                <!-- form control -->
+                <!-- input has a name and ngModel -->
+                <input type="text" placeholder="Name" [(ngModel)]="temp.name" name="pname" required pattern="[A-Za-z0-9_]{1,}[]{0,}){0,}"  #nameCtrl="ngModel"/>
+            </div>
+            <div * ngIf="nameCtrl.invalid" [ngStyle]="{color : 'red'} ">
+                        field is required
+            </div>
+        </div>
+        <div>
+            <label>Price</label>
+            <div>
+                <!-- form control -->
+                <!-- adding some validator as required  -->
+                <input type="number"placeholder="price" [(ngModel)]="temp.price" name="pprice" required="" min=" 100" #priceCtrl="ngModel">
+            </div   >
+            <div *ngIf="priceCtrl.hasError('required')"[ngStyle]="{color : 'red'} ">field is required</div>
+            <div *ngIf="priceCtrl.hasError('min')"[ngStyle]="{color : 'red'} ">min value is required</div>
+        </div>
+        <div>
+            <label>Description</label>
+            <div>
+                <!-- form control -->
+                <input type="text"placeholder="description" [(ngModel)]="temp.description" name="pdescription">
+            </div>
+        </div>
+        <div>
+            <button (click)="save() "[disabled] ="productFormGroup.pristine || productFormGroup.invalid" >
+                save
+            </button>
+            <button (click)="cancel()">
+                cancel
+            </button>
+        </div>
+    </fieldset>
+</form>
+</div>

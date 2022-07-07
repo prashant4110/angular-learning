@@ -4,13 +4,15 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 
 
 @NgModule({
   declarations: [
     ListProductsComponent,
-    FilterPipe
+    FilterPipe,
+    EditProductComponent
   ],
   imports: [
     CommonModule,
